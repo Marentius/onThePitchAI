@@ -6,6 +6,7 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .app {
@@ -19,6 +20,7 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
+  position: relative; /* Sikrer posisjonering av elementene */
 }
 
 /* Sidebar (Aside) */
@@ -39,7 +41,6 @@ body {
   flex-direction: column;
   background-color: var(--background-color);
   overflow: hidden;
-  padding-bottom: 60px; /* Unngå overlapping av InputBox */
 }
 
 .chatbox {
@@ -47,40 +48,42 @@ body {
   overflow-y: auto;
   padding: 10px;
   background-color: var(--background-color);
+  padding-bottom: 60px; /* Unngå overlapping av InputBox */
 }
 
 .inputbox {
-  position: fixed; /* Fest InputBox til bunnen av vinduet */
+  position: fixed; /* Festet til bunnen av vinduet */
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100%; /* Sørg for at den fyller hele bredden */
   display: flex;
   padding: 10px;
   border-top: 1px solid var(--button-border);
   background-color: var(--button-background);
   align-items: center;
-  gap: 10px;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Valgfri skygge for bedre synlighet */
+  gap: 10px; /* Avstand mellom input og knappene */
+  box-sizing: border-box; /* Inkluder padding i totalbredde */
+  z-index: 100; /* Sørg for at den alltid vises øverst */
 }
 
 .inputbox input {
-  flex: 1;
+  flex: 1; /* Fyller tilgjengelig plass */
   padding: 10px;
+  font-size: 16px;
   border: 1px solid var(--button-border);
   border-radius: 4px;
-  font-size: 16px;
   background-color: var(--background-color);
   color: var(--text-color);
+  box-sizing: border-box;
 }
 
-/* Felles stil for knappene */
 .inputbox button {
-  height: 40px;
+  height: 40px; /* Ensartet høyde for knappene */
+  padding: 0 15px; /* Konsistent padding */
+  border: 1px solid var(--button-border);
+  border-radius: 4px;
   background-color: var(--button-background);
   color: var(--button-text-color);
-  border: 1px solid var(--button-border);
-  padding: 0 15px;
-  border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   display: flex;
@@ -93,17 +96,6 @@ body {
   background-color: var(--button-hover-background, #ddd);
   color: var(--text-color);
 }
-
-.new-chat-button {
-  font-size: 14px;
-  border: 1px solid var(--button-border);
-}
-
-.new-chat-button:hover {
-  background-color: var(--button-hover-background, #ddd);
-  color: var(--text-color);
-}
-
 /* Mobilvennlig layout */
 @media (max-width: 768px) {
   .main-content {
@@ -123,23 +115,6 @@ body {
   }
 
   .chatbox {
-    padding-bottom: 60px; /* Unngå overlapping med InputBox på mobil */
+    padding-bottom: 60px; /* Unngå overlapping med InputBox */
   }
-}
-
-/* Toggle Aside Button */
-.toggle-aside-button {
-  margin: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--button-background);
-  color: var(--button-text-color);
-  border: 1px solid var(--button-border);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.toggle-aside-button:hover {
-  background-color: var(--button-hover-background, #ddd);
-  color: var(--text-color);
 }

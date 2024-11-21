@@ -12,8 +12,22 @@ function App() {
   const [showAside, setShowAside] = useState(false);
 
   useEffect(() => {
+    // Oppdater tema-attributtet
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    // Dynamisk håndtering av høyden på viewporten
+    const handleResize = () => {
+      const viewportHeight = window.innerHeight;
+      document.documentElement.style.setProperty("--vh", `${viewportHeight * 0.01}px`);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Kjør én gang ved oppstart
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
@@ -30,9 +44,9 @@ function App() {
     ];
 
     // Sjekk om meldingen er et spørsmål
-    if (message.includes("")) {
+    if (message.includes("?")) {
       const funnyResponses = [
-        "Dette er satt opp på 2 min for å vite om det var noe sånt du mente. Dette kan selvfølgelig bli mye penere og bedre"
+        "Dette er satt opp på 2 min for å vite om det var noe sånt du mente. Dette kan selvfølgelig bli mye penere og bedre",
       ];
 
       // Velg en tilfeldig morsom respons
