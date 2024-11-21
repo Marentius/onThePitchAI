@@ -16,7 +16,7 @@ const InputBox = ({ onSend, onNewChat }) => {
     <div className="inputbox">
       <input
         type="text"
-        placeholder="Faen til mas.."
+        placeholder="Skriv melding..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
