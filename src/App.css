@@ -6,7 +6,6 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   height: 100vh;
-  overflow: hidden; /* Hindrer scrolling */
 }
 
 .app {
