@@ -6,20 +6,19 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   height: 100vh;
-  overflow: hidden; /* Hindre scrolling */
+  overflow: hidden; /* Hindrer scrolling */
 }
 
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Fyll hele skjermens høyde */
+  height: 100vh; /* Hele skjermens høyde */
   width: 100vw;
 }
 
 iframe {
-  flex: 1; /* Fyll tilgjengelig plass i .app */
-  width: 100%; /* Sørg for at iframe tar full bredde */
-  height: 100%; /* Sørg for at iframe fyller hele høyden */
-  border: none; /* Fjern kantlinjer */
-  display: block; /* Sikrer at det ikke er noen uønsket spacing */
+  width: 100%; /* Full bredde */
+  height: calc(100vh); /* Sørger for at hele iframen vises uten å gå over skjermen */
+  border: none;
+  display: block; /* Ingen unødvendig mellomrom */
 }
