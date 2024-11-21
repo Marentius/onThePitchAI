@@ -32,11 +32,7 @@ function App() {
     // Sjekk om meldingen er et spørsmål
     if (message.includes("")) {
       const funnyResponses = [
-        "Det var et godt spørsmål! Jeg må tenke litt på det ...",
-        "Hmm, det er som om du leser tankene mine!",
-        "Spørsmål som dette gir meg eksistensielle kriser. Bra jobbet!",
-        "Et spørsmål verdig en Nobelpris! Jeg jobber med svaret.",
-        "Kan du gjenta spørsmålet? Jeg var opptatt med å finne meningen med livet.",
+        "Dette er satt opp på 2 min for å vite om det var noe sånt du mente. Dette kan selvfølgelig bli mye penere og bedre"
       ];
 
       // Velg en tilfeldig morsom respons

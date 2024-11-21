@@ -15,7 +15,7 @@ const InputBox = ({ onSend, onNewChat }) => {
     <div className="inputbox">
       <input
         type="text"
-        placeholder="Type your message..."
+        placeholder="Faen til mas.."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
@@ -23,7 +23,7 @@ const InputBox = ({ onSend, onNewChat }) => {
         <FaPaperPlane size={16} />
       </button>
       <button onClick={onNewChat} className="new-chat-button">
-        New Chat
+        Ny chat
       </button>
     </div>
   );
