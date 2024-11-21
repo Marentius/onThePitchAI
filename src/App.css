@@ -117,4 +117,19 @@ body {
   .chatbox {
     padding-bottom: 60px; /* Unngå overlapping med InputBox */
   }
+
+  .inputbox {
+    gap: 5px; /* Reduser avstanden mellom elementene på små skjermer */
+    padding: 8px;
+  }
+
+  .inputbox input {
+    font-size: 14px; /* Mindre font for små skjermer */
+  }
+
+  .inputbox button {
+    height: 36px; /* Juster høyden for små skjermer */
+    font-size: 12px;
+  }
+  
 }
