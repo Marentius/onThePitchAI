@@ -126,6 +126,24 @@ body {
     flex: 1;
     overflow-y: hidden; /* Unngå sidescroll */
   }
+
+  .inputbox {
+    flex-direction: column; /* Endre layout til kolonne */
+    gap: 5px; /* Reduser avstanden mellom elementene */
+  }
+
+  .inputbox input {
+    width: 100%; /* Fyll bredden på mobil */
+  }
+
+  .inputbox button {
+    width: 100%; /* Fyll bredden på mobil */
+  }
+
+  .new-chat-button {
+    width: 100%; /* Fyll bredden på mobil */
+    margin-top: 10px; /* Legg til litt avstand over knappen */
+  }
 }
 
 /* Toggle Aside Button */
