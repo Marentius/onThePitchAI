@@ -1,0 +1,81 @@
+import React, { useState, useEffect } from "react";
+import NavBar from "./components/NavBar";
+import ChatBox from "./components/ChatBox";
+import InputBox from "./components/InputBox";
+import Aside from "./components/Aside";
+import "./App.css";
+
+function App() {
+  const [theme, setTheme] = useState("dark");
+  const [chats, setChats] = useState([]);
+  const [currentChat, setCurrentChat] = useState([]);
+  const [showAside, setShowAside] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
+  const toggleAside = () => {
+    setShowAside((prevShowAside) => !prevShowAside);
+  };
+
+  const handleSend = (message) => {
+    const newMessages = [
+      ...currentChat,
+      { role: "user", text: message },
+    ];
+
+    // Sjekk om meldingen er et spørsmål
+    if (message.includes("")) {
+      const funnyResponses = [
+        "Det var et godt spørsmål! Jeg må tenke litt på det ...",
+        "Hmm, det er som om du leser tankene mine!",
+        "Spørsmål som dette gir meg eksistensielle kriser. Bra jobbet!",
+        "Et spørsmål verdig en Nobelpris! Jeg jobber med svaret.",
+        "Kan du gjenta spørsmålet? Jeg var opptatt med å finne meningen med livet.",
+      ];
+
+      // Velg en tilfeldig morsom respons
+      const randomResponse =
+        funnyResponses[Math.floor(Math.random() * funnyResponses.length)];
+
+      newMessages.push({ role: "assistant", text: randomResponse });
+    }
+
+    setCurrentChat(newMessages);
+  };
+
+  const handleNewChat = () => {
+    setChats((prev) => [
+      ...prev,
+      { title: `Chat ${prev.length + 1}`, messages: currentChat },
+    ]);
+    setCurrentChat([]);
+  };
+
+  const handleSelectChat = (index) => {
+    setCurrentChat(chats[index].messages);
+  };
+
+  return (
+    <div className="app">
+      <NavBar theme={theme} toggleTheme={toggleTheme} />
+      <div className="main-content">
+        {showAside && <Aside chats={chats} onSelectChat={handleSelectChat} />}
+        <div className="chat-container">
+          <ChatBox messages={currentChat} />
+          <InputBox
+            onSend={(message) => handleSend(message)}
+            onNewChat={handleNewChat}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;

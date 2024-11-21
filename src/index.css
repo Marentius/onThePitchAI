@@ -1,0 +1,38 @@
+/* Globale tema-variabler */
+:root {
+  --background-color: #ffffff; /* Light mode */
+  --text-color: #213547;
+  --button-background: #f9f9f9;
+  --button-text-color: #000;
+  --button-border: #000000;
+}
+
+[data-theme="dark"] {
+  --background-color: #242424; /* Dark mode */
+  --text-color: rgba(255, 255, 255, 0.87);
+  --button-background: #1a1a1a;
+  --button-text-color: #fff;
+  --button-border: #ffffff;
+}
+
+/* Grunnstiler */
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Fjern unødvendige elementer */
+h1 {
+  font-size: 2em;
+}
+
+button {
+  border: none;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+}

@@ -1,0 +1,19 @@
+.inputbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .inputbox input {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .inputbox button {
+    background: #feffff;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
