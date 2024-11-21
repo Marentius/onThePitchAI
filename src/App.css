@@ -39,6 +39,7 @@ body {
   flex-direction: column;
   background-color: var(--background-color);
   overflow: hidden;
+  padding-bottom: 60px; /* Unngå overlapping av InputBox */
 }
 
 .chatbox {
@@ -49,21 +50,17 @@ body {
 }
 
 .inputbox {
+  position: fixed; /* Fest InputBox til bunnen av vinduet */
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   padding: 10px;
   border-top: 1px solid var(--button-border);
   background-color: var(--button-background);
-  align-items: center; /* Justerer elementene vertikalt */
-  gap: 10px; /* Avstand mellom elementene */
-}
-
-.inputbox {
-  display: flex;
-  padding: 10px;
-  border-top: 1px solid var(--button-border);
-  background-color: var(--button-background);
-  align-items: center; /* Justerer elementene vertikalt */
-  gap: 10px; /* Avstand mellom elementene */
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Valgfri skygge for bedre synlighet */
 }
 
 .inputbox input {
@@ -78,30 +75,28 @@ body {
 
 /* Felles stil for knappene */
 .inputbox button {
-  height: 40px; /* Fikser høyden for alle knapper */
+  height: 40px;
   background-color: var(--button-background);
   color: var(--button-text-color);
   border: 1px solid var(--button-border);
-  padding: 0 15px; /* Fjern ulik padding */
+  padding: 0 15px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px; /* Sørger for at teksten skalerer likt */
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-/* Hover-effekt for knappene */
 .inputbox button:hover {
   background-color: var(--button-hover-background, #ddd);
   color: var(--text-color);
 }
 
-/* Specific style for the New Chat button */
 .new-chat-button {
   font-size: 14px;
-  border: 1px solid var(--button-border); /* Hvite borders */
+  border: 1px solid var(--button-border);
 }
 
 .new-chat-button:hover {
@@ -112,37 +107,23 @@ body {
 /* Mobilvennlig layout */
 @media (max-width: 768px) {
   .main-content {
-    flex-direction: column; /* Endre layout til kolonne */
+    flex-direction: column;
   }
 
   .aside {
-    width: 100%; /* Fyll bredden på mobil */
-    height: auto; /* Juster høyden automatisk */
-    border-right: none; /* Fjern sidegrense */
-    border-bottom: 1px solid var(--button-border); /* Legg til en grense nederst */
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--button-border);
   }
 
   .chat-container {
     flex: 1;
-    overflow-y: hidden; /* Unngå sidescroll */
+    overflow-y: hidden;
   }
 
-  .inputbox {
-    flex-direction: column; /* Endre layout til kolonne */
-    gap: 5px; /* Reduser avstanden mellom elementene */
-  }
-
-  .inputbox input {
-    width: 100%; /* Fyll bredden på mobil */
-  }
-
-  .inputbox button {
-    width: 100%; /* Fyll bredden på mobil */
-  }
-
-  .new-chat-button {
-    width: 100%; /* Fyll bredden på mobil */
-    margin-top: 10px; /* Legg til litt avstand over knappen */
+  .chatbox {
+    padding-bottom: 60px; /* Unngå overlapping med InputBox på mobil */
   }
 }
 
@@ -156,7 +137,6 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  align-self: flex-start; /* Plasser knappen til venstre */
 }
 
 .toggle-aside-button:hover {
