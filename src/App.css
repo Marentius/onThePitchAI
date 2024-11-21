@@ -91,7 +91,7 @@ body {
 .inputbox input {
   flex: 1;
   padding: 10px;
-  font-size: 16px;
+  font-size: 16px; /* Sørg for at fontstørrelsen er minst 16px */
   border: 1px solid var(--button-border);
   border-radius: 4px;
   background-color: var(--background-color);
@@ -147,13 +147,14 @@ body {
   }
 
   .inputbox input {
-    font-size: 14px;
+    font-size: 16px; /* Sørg for at fontstørrelsen er minst 16px */
   }
 
   .inputbox button {
     height: 36px;
     font-size: 12px;
   }
+
   /* Fjern hover-effekter på mobil */
   .chat-item:hover,
   .inputbox button:hover,
