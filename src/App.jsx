@@ -9,22 +9,20 @@ function App() {
   const [theme, setTheme] = useState("dark");
   const [chats, setChats] = useState([]);
   const [currentChat, setCurrentChat] = useState([]);
-  const [showAside, setShowAside] = useState(false);
+  const [showAside, setShowAside] = useState(true);
 
   useEffect(() => {
-    // Oppdater tema-attributtet
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   useEffect(() => {
-    // Dynamisk håndtering av høyden på viewporten
     const handleResize = () => {
       const viewportHeight = window.innerHeight;
       document.documentElement.style.setProperty("--vh", `${viewportHeight * 0.01}px`);
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Kjør én gang ved oppstart
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -43,13 +41,11 @@ function App() {
       { role: "user", text: message },
     ];
 
-    // Sjekk om meldingen er et spørsmål
     if (message.includes("?")) {
       const funnyResponses = [
         "Dette er satt opp på 2 min for å vite om det var noe sånt du mente. Dette kan selvfølgelig bli mye penere og bedre",
       ];
 
-      // Velg en tilfeldig morsom respons
       const randomResponse =
         funnyResponses[Math.floor(Math.random() * funnyResponses.length)];
 
@@ -73,7 +69,7 @@ function App() {
 
   return (
     <div className="app">
-      <NavBar theme={theme} toggleTheme={toggleTheme} />
+      <NavBar theme={theme} toggleTheme={toggleTheme} toggleAside={toggleAside} />
       <div className="main-content">
         {showAside && <Aside chats={chats} onSelectChat={handleSelectChat} />}
         <div className="chat-container">

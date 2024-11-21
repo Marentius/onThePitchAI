@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaPaperPlane } from "react-icons/fa";
+import "./InputBox.css";
 
 const InputBox = ({ onSend, onNewChat }) => {
   const [message, setMessage] = useState("");

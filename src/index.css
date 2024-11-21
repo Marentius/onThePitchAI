@@ -18,13 +18,12 @@
 /* Grunnstiler */
 body {
   margin: 0;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Fjern unødvendige elementer */
 h1 {
   font-size: 2em;
 }
@@ -35,4 +34,9 @@ button {
   font-size: 1em;
   font-family: inherit;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--button-hover-background, #ddd);
 }

@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   height: calc(var(--vh, 1vh) * 100);
@@ -20,7 +20,7 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
-  position: relative; /* Sikrer posisjonering av elementene */
+  position: relative;
 }
 
 /* Sidebar (Aside) */
@@ -32,6 +32,28 @@ body {
   height: 100%;
   overflow-y: auto;
   box-sizing: border-box;
+  color: var(--button-text-color);
+}
+
+.aside-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.chat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chat-item {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.chat-item:hover {
+  background-color: var(--button-hover-background);
 }
 
 /* Chat Container */
@@ -48,26 +70,26 @@ body {
   overflow-y: auto;
   padding: 10px;
   background-color: var(--background-color);
-  padding-bottom: 60px; /* Unngå overlapping av InputBox */
+  padding-bottom: 60px;
 }
 
 .inputbox {
-  position: fixed; /* Festet til bunnen av vinduet */
+  position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%; /* Sørg for at den fyller hele bredden */
+  width: 100%;
   display: flex;
   padding: 10px;
   border-top: 1px solid var(--button-border);
   background-color: var(--button-background);
   align-items: center;
-  gap: 10px; /* Avstand mellom input og knappene */
-  box-sizing: border-box; /* Inkluder padding i totalbredde */
-  z-index: 100; /* Sørg for at den alltid vises øverst */
+  gap: 10px;
+  box-sizing: border-box;
+  z-index: 100;
 }
 
 .inputbox input {
-  flex: 1; /* Fyller tilgjengelig plass */
+  flex: 1;
   padding: 10px;
   font-size: 16px;
   border: 1px solid var(--button-border);
@@ -78,8 +100,8 @@ body {
 }
 
 .inputbox button {
-  height: 40px; /* Ensartet høyde for knappene */
-  padding: 0 15px; /* Konsistent padding */
+  height: 40px;
+  padding: 0 15px;
   border: 1px solid var(--button-border);
   border-radius: 4px;
   background-color: var(--button-background);
@@ -93,9 +115,10 @@ body {
 }
 
 .inputbox button:hover {
-  background-color: var(--button-hover-background, #ddd);
+  background-color: var(--button-hover-background);
   color: var(--text-color);
 }
+
 /* Mobilvennlig layout */
 @media (max-width: 768px) {
   .main-content {
@@ -115,21 +138,28 @@ body {
   }
 
   .chatbox {
-    padding-bottom: 60px; /* Unngå overlapping med InputBox */
+    padding-bottom: 60px;
   }
 
   .inputbox {
-    gap: 5px; /* Reduser avstanden mellom elementene på små skjermer */
+    gap: 5px;
     padding: 8px;
   }
 
   .inputbox input {
-    font-size: 14px; /* Mindre font for små skjermer */
+    font-size: 14px;
   }
 
   .inputbox button {
-    height: 36px; /* Juster høyden for små skjermer */
+    height: 36px;
     font-size: 12px;
   }
-  
+  /* Fjern hover-effekter på mobil */
+  .chat-item:hover,
+  .inputbox button:hover,
+  .theme-toggle:hover,
+  .aside-toggle:hover {
+    background-color: inherit;
+    color: inherit;
+  }
 }
