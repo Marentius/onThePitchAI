@@ -7,7 +7,7 @@ const App = () => {
       <iframe
         src="https://www.chatbase.co/chatbot-iframe/KXuGraOSA00cBH8VsZ6z4"
         width="100%"
-        style={{ height: '100%', minHeight: '700px' }}
+        style={{ flex: 1, border: 'none' }}
         frameBorder="0"
       ></iframe>
     </div>
