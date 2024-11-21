@@ -29,3 +29,13 @@
 .chat-item:hover {
   background-color: var(--button-hover-background);
 }
+
+/* Mobilvennlig layout */
+@media (max-width: 768px) {
+  .aside {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--button-border);
+  }
+}
