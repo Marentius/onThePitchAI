@@ -6,18 +6,18 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   height: 100vh;
+  overflow: hidden; /* Hindre scrolling på mobil */
 }
 
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Endret fra height til min-height */
+  height: 100vh; /* Sørg for at appen fyller hele skjermen */
   width: 100vw;
 }
 
 iframe {
-  flex: 1;
   width: 100%;
-  height: 100%; /* Sørg for at iframe fyller området */
+  height: 100vh; /* Sørg for at iframe fyller hele skjermens høyde */
   border: none;
 }
