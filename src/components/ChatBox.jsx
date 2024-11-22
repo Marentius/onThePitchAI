@@ -1,12 +1,15 @@
 import React from 'react';
-import './ChatBox.css';
 
 const ChatBox = ({ messages }) => {
   return (
-    <div className="chatbox">
+    <div className="chat-box overflow-auto" style={{ height: '400px' }}>
       {messages.map((msg, index) => (
-        <div key={index} className={`message ${msg.role}`}>
-          {msg.text}
+        <div
+          key={index}
+          className={`alert ${msg.role === 'user' ? 'alert-primary text-end' : 'alert-secondary text-start'}`}
+          style={{ maxWidth: '75%', margin: 'auto', marginBottom: '10px' }}
+        >
+          {msg.content}
         </div>
       ))}
     </div>

@@ -1,17 +1,15 @@
-import React from "react";
-import { FaSun, FaMoon, FaBars } from "react-icons/fa";
-import "./NavBar.css";
+import React from 'react';
 
-const NavBar = ({ theme, toggleTheme, toggleAside }) => {
+const NavBar = ({ isDarkMode, toggleDarkMode }) => {
   return (
-    <nav className="navbar">
-      <h1 className="navbar-title">OnThePitchAI</h1>
-      <div className="navbar-buttons">
-        <button onClick={toggleAside} className="aside-toggle">
-          <FaBars size={24} />
-        </button>
-        <button onClick={toggleTheme} className="theme-toggle">
-          {theme === "light" ? <FaMoon size={24} /> : <FaSun size={24} />}
+    <nav className={`navbar navbar-expand-lg ${isDarkMode ? 'navbar-light bg-light' : 'navbar-dark bg-dark'}`}>
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">OnThePitchAI</a>
+        <button
+          className={`btn btn-sm btn-${isDarkMode ? 'light' : 'dark'}`}
+          onClick={toggleDarkMode}
+        >
+          {isDarkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
       </div>
     </nav>

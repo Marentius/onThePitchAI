@@ -1,26 +1,28 @@
-import React from "react";
-import "./Aside.css";
+import React from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import './Aside.css';
 
-const Aside = ({ chats, onSelectChat }) => {
+const Aside = ({ isOpen, toggleAside, chatHistory }) => {
   return (
-    <aside className="aside">
-      <h2 className="aside-title">Tidligere chatter denne sesjonen</h2>
-      <ul className="chat-list">
-        {chats.length === 0 ? (
-          <p className="no-chats">Her var det tomt gitt</p>
-        ) : (
-          chats.map((chat, index) => (
-            <li
-              key={index}
-              className="chat-item"
-              onClick={() => onSelectChat(index)}
-            >
-              {chat.title || `Chat ${index + 1}`}
+    <div className={`aside-container`}>
+      {/* Knapp for å åpne/lukke Aside */}
+      <button className="toggle-btn" onClick={toggleAside}>
+        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+      </button>
+
+      {/* Selve Aside-menyen */}
+      <aside className={`aside ${isOpen ? 'aside-open' : 'aside-closed'}`}>
+        <h4 className="aside-title">Chat History</h4>
+        <ul className="aside-chat-history">
+          {chatHistory.map((msg, index) => (
+            <li key={index} className={`aside-message ${msg.role}`}>
+              <span className="message-role">{msg.role === 'user' ? 'You:' : 'Bot:'}</span>
+              <p className="message-content">{msg.content}</p>
             </li>
-          ))
-        )}
-      </ul>
-    </aside>
+          ))}
+        </ul>
+      </aside>
+    </div>
   );
 };
 

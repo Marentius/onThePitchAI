@@ -1,87 +1,54 @@
-import React, { useState, useEffect } from "react";
-import NavBar from "./components/NavBar";
-import ChatBox from "./components/ChatBox";
-import InputBox from "./components/InputBox";
-import Aside from "./components/Aside";
-import "./App.css";
+import React, { useState } from 'react';
+import NavBar from './components/NavBar';
+import Aside from './components/Aside';
+import ChatBox from './components/ChatBox';
+import InputBox from './components/InputBox';
+import { sendMessageToChatbase } from './chatbaseApi';
 
-function App() {
-  const [theme, setTheme] = useState("dark");
-  const [chats, setChats] = useState([]);
-  const [currentChat, setCurrentChat] = useState([]);
-  const [showAside, setShowAside] = useState(true);
+const App = () => {
+  const [messages, setMessages] = useState([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isAsideOpen, setIsAsideOpen] = useState(false);
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+  const handleSendMessage = async (userMessage) => {
+    const userMsgObj = { content: userMessage, role: 'user' };
+    setMessages((prev) => [...prev, userMsgObj]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const viewportHeight = window.innerHeight;
-      document.documentElement.style.setProperty("--vh", `${viewportHeight * 0.01}px`);
-    };
+    try {
+      const response = await sendMessageToChatbase(userMessage);
 
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
-
-  const toggleAside = () => {
-    setShowAside((prevShowAside) => !prevShowAside);
-  };
-
-  const handleSend = (message) => {
-    const newMessages = [
-      ...currentChat,
-      { role: "user", text: message },
-    ];
-
-    if (message.includes("?")) {
-      const funnyResponses = [
-        "Dette er satt opp på 2 min for å vite om det var noe sånt du mente. Dette kan selvfølgelig bli mye penere og bedre",
-      ];
-
-      const randomResponse =
-        funnyResponses[Math.floor(Math.random() * funnyResponses.length)];
-
-      newMessages.push({ role: "assistant", text: randomResponse });
+      if (response && response.text && response.text.trim() !== '') {
+        const botMsgObj = { content: response.text, role: 'bot' };
+        setMessages((prev) => [...prev, botMsgObj]);
+      } else {
+        const errorMsgObj = { content: 'Bot could not generate a response.', role: 'bot' };
+        setMessages((prev) => [...prev, errorMsgObj]);
+      }
+    } catch (error) {
+      console.error('Failed to get response:', error);
+      const errorMsgObj = { content: 'Error: Could not connect to chatbot.', role: 'bot' };
+      setMessages((prev) => [...prev, errorMsgObj]);
     }
-
-    setCurrentChat(newMessages);
   };
 
-  const handleNewChat = () => {
-    setChats((prev) => [
-      ...prev,
-      { title: `Chat ${prev.length + 1}`, messages: currentChat },
-    ]);
-    setCurrentChat([]);
-  };
-
-  const handleSelectChat = (index) => {
-    setCurrentChat(chats[index].messages);
-  };
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+  const toggleAside = () => setIsAsideOpen(!isAsideOpen);
 
   return (
-    <div className="app">
-      <NavBar theme={theme} toggleTheme={toggleTheme} toggleAside={toggleAside} />
-      <div className="main-content">
-        {showAside && <Aside chats={chats} onSelectChat={handleSelectChat} />}
-        <div className="chat-container">
-          <ChatBox messages={currentChat} />
-          <InputBox
-            onSend={(message) => handleSend(message)}
-            onNewChat={handleNewChat}
-          />
+    <div className={`d-flex flex-column vh-100 ${isDarkMode ? 'bg-dark text-light' : 'bg-light text-dark'}`}>
+      {/* NavBar */}
+      <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      {/* Main Content */}
+      <div className="d-flex flex-column flex-grow-1">
+        <div className="flex-grow-1 overflow-auto">
+          <ChatBox messages={messages} />
+        </div>
+        <div className="p-3">
+          <InputBox onSendMessage={handleSendMessage} />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default App;

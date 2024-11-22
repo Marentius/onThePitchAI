@@ -1,41 +1,99 @@
-.aside {
-  width: 250px;
-  background-color: var(--button-background);
-  border-right: 1px solid var(--button-border);
-  padding: 1rem;
-  height: 100%;
-  overflow-y: auto;
-  box-sizing: border-box;
-  color: var(--button-text-color);
-}
-
-.aside-title {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.chat-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.chat-item {
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.chat-item:hover {
-  background-color: var(--button-hover-background);
-}
-
-/* Mobilvennlig layout */
-@media (max-width: 768px) {
-  .aside {
-    width: 100%;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--button-border);
+.aside-container {
+    position: relative;
+    z-index: 1000; /* Sørger for at Aside vises foran andre elementer */
   }
-}
+  
+  .toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1050;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #f8f9fa;
+    color: #212529;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1040;
+  }
+  
+  .aside-open {
+    transform: translateX(0);
+  }
+  
+  .aside-closed {
+    transform: translateX(-100%);
+  }
+  
+  .aside-title {
+    padding: 20px;
+    margin: 0;
+    font-size: 18px;
+    background-color: #0078d7;
+    color: white;
+    text-align: center;
+  }
+  
+  .aside-chat-history {
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .aside-message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #e9ecef;
+    color: #333;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+  
+  .aside-message.user {
+    background-color: #d1e7ff; /* Lys blå for bruker */
+    color: #084298;
+    align-self: flex-end;
+  }
+  
+  .aside-message.bot {
+    background-color: #e9ecef; /* Lys grå for bot */
+    color: #495057;
+    align-self: flex-start;
+  }
+  
+  .message-role {
+    font-weight: bold;
+  }
+  
+  .message-content {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .aside-chat-history {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Juster meldingene til venstre */
+    margin: 0;
+    padding: 20px;
+    list-style: none;
+  }
+
+  @media (max-width: 768px) {
+    .aside {
+      width: 250px; /* Mindre bredde på mobil */
+    }
+  }

@@ -1,30 +1,26 @@
-import React, { useState } from "react";
-import { FaPaperPlane } from "react-icons/fa";
-import "./InputBox.css";
+import React, { useState } from 'react';
 
-const InputBox = ({ onSend, onNewChat }) => {
-  const [message, setMessage] = useState("");
+const InputBox = ({ onSendMessage }) => {
+  const [message, setMessage] = useState('');
 
-  const handleSendClick = () => {
-    if (message.trim() !== "") {
-      onSend(message);
-      setMessage(""); // Tøm input-feltet etter sending
-    }
+  const handleSendMessage = () => {
+    if (message.trim() === '') return;
+
+    onSendMessage(message);
+    setMessage('');
   };
 
   return (
-    <div className="inputbox">
+    <div className="d-flex">
       <input
         type="text"
-        placeholder="Skriv melding..."
+        className="form-control"
+        placeholder="Type your message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <button onClick={handleSendClick}>
-        <FaPaperPlane size={16} />
-      </button>
-      <button onClick={onNewChat} className="new-chat-button">
-        Ny chat
+      <button className="btn btn-primary ms-2" onClick={handleSendMessage}>
+        Send
       </button>
     </div>
   );
